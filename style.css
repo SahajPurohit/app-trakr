@@ -9,6 +9,7 @@ body {
 }
 
 .quad {
+    cursor: pointer;
     display: grid; 
     justify-content: center; 
     align-content: center;
