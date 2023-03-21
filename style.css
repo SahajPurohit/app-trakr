@@ -8,6 +8,28 @@ body {
     grid-template-rows: auto auto;
 }
 
+.quad {
+    display: grid; 
+    justify-content: center; 
+    align-content: center;
+}
+
+.quad:nth-child(1) {
+    background: rgb(0, 0, 252);
+}
+
+.quad:nth-child(2) {
+    background: rgb(40, 128, 192);
+}
+
+.quad:nth-child(3) {
+    background: rgb(3, 6, 97);
+}
+
+.quad:nth-child(4) {
+    background: rgb(4, 5, 68);
+}
+
 .quad-title {
     color: aliceblue;
     font-size: xx-large;
