@@ -7,3 +7,8 @@ body {
     grid-template-columns: auto auto;
     grid-template-rows: auto auto;
 }
+
+.quad-title {
+    color: aliceblue;
+    font-size: xx-large;
+}
