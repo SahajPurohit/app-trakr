@@ -25,6 +25,10 @@ function addApps() {
     const comp = document.getElementById("company-name").value;
     const pos = document.getElementById("position-name").value;
     tableContent.push([comp, pos, date, time]);
+    renderTable();
+}
+
+function renderTable() {
     for (let i = ctr - 1; i < tableContent.length; i++) {
         tableContent[i].unshift(ctr.toString());
         ctr++;
