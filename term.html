@@ -11,46 +11,44 @@
 
     </head>
     <body>
-        <p>Icon buttons:</p>
-        <button class="btn"><i class="fa fa-home"></i></button>
-        <button class="btn"><i class="fa fa-bars"></i></button>
-        <button class="btn"><i class="fa fa-trash"></i></button>
-        <button class="btn"><i class="fa fa-close"></i></button>
-        <button class="btn"><i class="fa fa-folder"></i></button>
+        
+        <!-- Home Button -->
+        <button class="btn" onclick="location.href='index.html';"><i class="fa fa-home"></i> Home</button>
+        
+       
+        <div class = "center">
 
-        <p>Icon buttons with text:</p>
-        <button class="btn"><i class="fa fa-home"></i> Home</button>
-        <button class="btn"><i class="fa fa-bars"></i> Menu</button>
-        <button class="btn"><i class="fa fa-trash"></i> Trash</button>
-        <button class="btn"><i class="fa fa-close"></i> Close</button>
-        <button class="btn"><i class="fa fa-folder"></i> Folder</button>
-        <label for="Term" class="term-label">Term:  </label>
-        <input type="text" placeholder="Enter Term">
+             <!-- Term Label -->
+            <label for="Term" class="term-label">Term:  </label>
+            <input type="text" placeholder="Enter Term (Eg. Spring 2023)">
 
-        <table class= "content-table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Company</th>
-                    <th>Position</th>
-                    <th>Date Applied</th>
-                    <th>Time Applied</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Amazon</td>
-                    <td>SWE</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Facebook</td>
-                    <td>SWE</td>
-                </tr>
-            </tbody>
-        </table>
+            <!-- Table -->
+            <table class= "content-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Company</th>
+                        <th>Position</th>
+                        <th>Date Applied</th>
+                        <th>Time Applied</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Amazon</td>
+                        <td>SWE</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Facebook</td>
+                        <td>SWE</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
 
         <button type="button">Add new appliactions</button> 
         <!-- <div class="popup" onclick="myFunction()">Click me!
