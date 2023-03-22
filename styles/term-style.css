@@ -3,10 +3,15 @@ body {
 }
 
 .content-table {
-    /* border-collapse: collapse; */
+    border-collapse: collapse;
     margin: 25px 0;
+    /* Centering Logic */
+    margin-left: auto;
+    margin-right: auto;
+    /* Centering Logic End*/
     font-size: 0.9em;
     min-width: 400px;
+
 }
 
 .content-table thead tr {
@@ -31,7 +36,73 @@ body {
     border-bottom: 1px solid #4e02ffdd;
 }
 
+.content-table tbody tr:nth-of-type(even) {
+    /* background-color: rgb(174, 135, 212); */
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid rgb(198, 184, 255);;
+}
 .term-label {
     color: azure;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: xx-large;
+    /* Centering Logic */
+    margin-left: auto;
+    margin-right: auto;
+    /* Centering Logic End*/
 }
+
+ /* Popup container */
+ .popup {
+    color: aliceblue;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  /* The actual popup (appears on top) */
+  .popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+  }
+  
+  /* Popup arrow */
+  .popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  /* Toggle this class when clicking on the popup container (hide and show the popup) */
+  .popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
+  }
+  
+  /* Add animation (fade in the popup) */
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+  } 
