@@ -41,7 +41,7 @@ body {
 
 /* Add highlighting to even numbered elements in rows */
 .content-table tbody tr:nth-of-type(even) {
-    /* background-color: rgb(174, 135, 212); */
+    background-color: rgb(25, 22, 112);
 }
 
 .content-table tbody tr:last-of-type {
