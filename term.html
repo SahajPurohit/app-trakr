@@ -13,11 +13,12 @@
     <body>
         
         <!-- Home Button -->
-        <button class="btn" onclick="location.href='index.html';"><i class="fa fa-home"></i> Home</button>
+        <button class="home-btn" onclick="location.href='index.html';"><i class="fa fa-home"></i> Home</button>
         
+
        
         <div class = "center">
-
+            
              <!-- Term Label -->
             <label for="Term" class="term-label">Term:  </label>
             <input type="text" placeholder="Enter Term (Eg. Spring 2023)">
@@ -48,12 +49,34 @@
                 </tbody>
             </table>
 
-        </div>
+        </div>  <!-- Begin Add Applications Button Form Logic -->
+        
+        <button id="add-app">Add new appliactions</button> <!-- Button -->
 
-        <button type="button">Add new appliactions</button> 
-        <!-- <div class="popup" onclick="myFunction()">Click me!
-            <span class="popuptext" id="myPopup">Popup text...</span>
-          </div>  -->
+        <div class="popup-form"> <!-- Actual Form-->
+
+            <div class="close-btn">&times;</div> <!--Close button for the form-->
+
+            <div class="form">
+                <h2>Insert Information</h2>
+                <div class="form-element">
+                    <label for="company">Company: </label>
+                    <input type="text" id="company-name" placeholder="Enter company name">
+                </div>
+                <div class="form-element">
+                    <label for="position">Position: </label>
+                    <input type="text" id="company-name" placeholder="Enter position name">
+                </div>
+                <div class="form-element">
+                    <label for="autofill-date-time">Autofill date and time: </label>
+                    <input type="checkbox" id="autofill-date-time">
+                </div>
+                <div class="form-element">
+                    <button>Enter</button>
+                </div>
+            </div>
+        </div> <!-- End Add Applications Button Form Logic -->
+
     </body>
 
     <script src="js/term.js"></script> 
