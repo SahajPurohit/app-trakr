@@ -14,26 +14,21 @@ document.querySelector(".popup-form .enter-btn").addEventListener("click", funct
 });
 
 
+var tableContent = [];
+var ctr = 1;
+
 function addApps() {
     table = document.getElementById("table")
     var dateAndTime = Date();
     date = dateAndTime.substring(0, 15);
     time = dateAndTime.substring(17, 24);
-    // var tableHeaders = ["#", "Company", "Position", "Date Applied", "Time Applied", "Status"]
-    var tableContent = [/*["#", "Company", "Position", "Date Applied", "Time Applied", "Status"],*/
-                    ["Apple", "Software Engineer", date, time],
-                    ["CashApp", "Software Engineer", date, time],
-                    ["Adobe", "Software Engineer", date, time],
-                    ["Amazon", "SWE", date, time],
-                    ["Dapple", "SWE", date, time],
-                    ["Amazon", "SWE", date, time],
-                    ["Dapple", "SWE", date, time]];
-
-    var ctr = 1;
-    for (let i = 0; i < tableContent.length; i++) {
+    const comp = document.getElementById("company-name").value;
+    const pos = document.getElementById("position-name").value;
+    tableContent.push([comp, pos, date, time]);
+    for (let i = ctr - 1; i < tableContent.length; i++) {
         tableContent[i].unshift(ctr.toString());
         ctr++;
-        tableContent[i].push("Active")
+        tableContent[i].push("Active");
     }
 
     for (let i = 1; i <= tableContent.length; i++) { // rows
@@ -41,4 +36,4 @@ function addApps() {
             table.rows[i].cells[j].innerHTML = tableContent[i-1][j];
         }
     }
-};
+}
