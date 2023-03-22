@@ -13,6 +13,7 @@ body {
     display: grid; 
     justify-content: center; 
     align-content: center;
+    /* transition: background-color 0.5s ease; */  /* Learning Purposes */
 }
 
 .quad:nth-child(1) {
@@ -29,6 +30,10 @@ body {
 
 .quad:nth-child(4) {
     background: rgb(4, 5, 68);
+}
+
+.quad:nth-child(n):hover {
+    background: black;
 }
 
 .quad-title {
