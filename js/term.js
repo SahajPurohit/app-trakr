@@ -5,21 +5,21 @@ document.querySelector("#add-app").addEventListener("click", function() {
 });
 
 // Close btn logic
-document.querySelector(".popup-form .close-btn").addEventListener("click", function() {
-    document.querySelector(".popup-form").classList.remove("active");
-    document.querySelector("#overlay").classList.remove("active");
-});
+document.querySelector(".popup-form .close-btn").addEventListener("click", closePopup);
 
 // Should also close after clicking enter
-document.querySelector(".popup-form .enter-btn").addEventListener("click", function() {
-    document.querySelector(".popup-form").classList.remove("active");
-    document.querySelector("#overlay").classList.remove("active");
-});
-
+document.querySelector(".popup-form .enter-btn").addEventListener("click", closePopup);
 
 var tableContent = [];
 var ctr = 1;
 // table = document.getElementById("table")
+
+function closePopup() {
+    document.querySelector(".popup-form").classList.remove("active");
+    document.querySelector("#overlay").classList.remove("active");
+    document.getElementById('company-name').value = '';
+    document.getElementById('position-name').value = '';
+}
 
 function addApps() {
     // table = document.getElementById("table")
@@ -42,6 +42,7 @@ function deleteLatestEntry() {
 
 function renderTable() {
     // table = document.getElementById("table")
+    
     // Add the numbering and the status
     for (let i = ctr - 1; i < tableContent.length; i++) {
         tableContent[i].unshift(ctr.toString());
