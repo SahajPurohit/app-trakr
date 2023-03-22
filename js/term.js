@@ -23,26 +23,36 @@ function closePopup() {
 
 function addApps() {
     // table = document.getElementById("table")
+    
     var dateAndTime = Date();
     date = dateAndTime.substring(0, 15);
     time = dateAndTime.substring(17, 24);
     const comp = document.getElementById("company-name").value;
     const pos = document.getElementById("position-name").value;
     tableContent.push([comp, pos, date, time]);
-    renderTable();
+    const tbodyEl = document.querySelector('tbody');
+    tbodyEl.innerHTML += `
+        <tr>
+            <td>${ctr}</td>
+            <td>${comp}</td>
+            <td>${pos}</td>
+            <td>${date}</td>
+            <td>${time}</td>
+            <td>Active</td>
+        </tr>
+    `;
+    ctr++;
+    //renderTable();
 }
 
 function deleteLatestEntry() {
     console.log("Ello")
     if (tableContent.length == 0) return;
     tableContent.pop();
-    // table = document.getElementById("table")
     renderTable();
 }
 
 function renderTable() {
-    // table = document.getElementById("table")
-    
     // Add the numbering and the status
     for (let i = ctr - 1; i < tableContent.length; i++) {
         tableContent[i].unshift(ctr.toString());
