@@ -14,6 +14,9 @@ var tableContent = [];
 var ctr = 1;
 // table = document.getElementById("table")
 
+const tableEl = document.querySelector('table');
+tableEl.addEventListener("click", deleteRow);
+
 function closePopup() {
     document.querySelector(".popup-form").classList.remove("active");
     document.querySelector("#overlay").classList.remove("active");
@@ -39,10 +42,18 @@ function addApps() {
             <td>${date}</td>
             <td>${time}</td>
             <td>Active</td>
+            <td><button class='delete-btn'>&times;</button></td>
         </tr>
     `;
     ctr++;
     //renderTable();
+}
+
+function deleteRow(e) {
+    if (!e.target.classList.contains('delete-btn')) return;
+    const btn = e.target;
+    btn.closest('tr').remove();
+    if (ctr != 0) ctr--;
 }
 
 function deleteLatestEntry() {

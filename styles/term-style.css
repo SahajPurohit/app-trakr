@@ -175,8 +175,6 @@ body {
 }
 /* Popup form end*/
 
-
-/* Begin undo button */
 .undo-btn {  
     display:inline-block;
     width:50px;
@@ -193,4 +191,18 @@ body {
 .undo-btn:hover{
     background-color: royalblue;
 }
-/* End undo button */
+
+.delete-btn {
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    width: 20px; 
+    text-align: center;
+    background: rgb(255, 255, 255);
+    border: none;
+    line-height: 20px;
+    border-radius: 20px;
+}
+
+.delete-btn:hover {
+    background-color: royalblue;
+}
