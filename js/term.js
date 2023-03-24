@@ -1,3 +1,7 @@
+window.onload = function() {
+    document.getElementById('term').value = ''; // Clear term on refresh
+}
+
 // Logic to show form
 document.querySelector("#add-app").addEventListener("click", function() {
     document.querySelector(".popup-form").classList.add("active");
@@ -73,4 +77,30 @@ function renderTable() {
         toAdd += `<td><button class='delete-btn'>&times;</button></td></tr>`
     } 
     tbodyEl.innerHTML = toAdd;
+}
+
+function htmlToCsv() {
+    if (document.getElementById('term').value == '') {
+        alert("Please fill out the term field as that will be the name of the csv.");
+        return;
+    }
+    var filename = document.getElementById('term').value;
+    var csvTable = [];
+    csvTable.push(["#", "Company", "Position", "Date", "Time", "Status"])
+    for (let i = 0; i < tableContent.length; i++) {
+        csvTable.push(tableContent[i].join(','));
+    }
+    console.log(csvTable)
+    downloadCSVFile(csvTable.join("\n"), filename);
+}
+
+function downloadCSVFile(csv, filename) {
+    var csvFile, downloadLink;
+    csvFile = new Blob([csv], { type: "text/csv"});
+    downloadLink = document.createElement("a");
+    downloadLink.download = filename;
+    downloadLink.href = window.URL.createObjectURL(csvFile);
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
 }
