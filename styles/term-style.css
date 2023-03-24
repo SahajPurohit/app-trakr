@@ -92,6 +92,8 @@ body {
     background-size: 50% 2px,2px 50%; /*thickness = 2px, length = 50% (25px)*/
     background-repeat:no-repeat;
     cursor: pointer;
+    margin-left: 10px;
+    margin-bottom: 5px;
 }
 
 .plus-btn:hover{
@@ -138,6 +140,10 @@ body {
     background: rgb(255, 255, 255);
     line-height: 20px;
     border-radius: 20px;
+}
+
+.popup-form .close-btn:hover {
+    background-color: royalblue;
 }
 
 .form-element {
@@ -213,6 +219,7 @@ body {
 
 .download-btn {
     /* top: -100; */
+    margin-left: 10px;
     font-size: larger;
     display: inline-block;
     background-color: white;
@@ -229,9 +236,16 @@ body {
 
 .undo-btn-change {
     /* display: inline-block; */
+    cursor: pointer;
     border: none;
     font-size: larger;
     width: 50px;
     line-height: 50px;
     border-radius: 50px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.undo-btn-change:hover {
+    background-color: royalblue;
 }
