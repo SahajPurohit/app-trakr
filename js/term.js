@@ -15,8 +15,6 @@ document.querySelector(".popup-form .close-btn").addEventListener("click", close
 document.querySelector(".popup-form .enter-btn").addEventListener("click", closePopup);
 
 var tableContent = [];
-var ctr = 1;
-// table = document.getElementById("table")
 
 const tableEl = document.querySelector('table');
 tableEl.addEventListener("click", deleteRow);
@@ -29,18 +27,16 @@ function closePopup() {
 }
 
 function addApps() {
-    // table = document.getElementById("table")
-    
     var dateAndTime = Date();
     date = dateAndTime.substring(0, 15);
     time = dateAndTime.substring(16, 24);
     const comp = document.getElementById("company-name").value;
     const pos = document.getElementById("position-name").value;
-    tableContent.push([ctr, comp, pos, date, time, "Active"]);
+    tableContent.push([comp, pos, date, time, "Active"]);
     const tbodyEl = document.querySelector('tbody');
     tbodyEl.innerHTML += `
         <tr>
-            <td>${ctr}</td>
+            <td>${tableContent.length}</td>
             <td>${comp}</td>
             <td>${pos}</td>
             <td>${date}</td>
@@ -49,33 +45,34 @@ function addApps() {
             <td><button class='delete-btn'>&times;</button></td>
         </tr>
     `;
-    ctr++;
 }
 
 function deleteRow(e) {
     if (!e.target.classList.contains('delete-btn')) return;
-    const btn = e.target;
-    btn.closest('tr').remove();
-    if (ctr != 0) ctr--;
+    var btn = e.target;
+    let rowInnerHTML = btn.closest('tr');
+    var idx = rowInnerHTML.querySelector('td:first-child').innerHTML;
+    idx = parseInt(idx)
+    tableContent.splice(idx - 1, 1);
+    renderTable();
 }
 
 function deleteLatestEntry() {
     if (tableContent.length == 0) return;
     tableContent.pop();
     renderTable();
-    if (ctr != 0) ctr--;
 }
 
 function renderTable() {
     const tbodyEl = document.querySelector('tbody');
     toAdd = ``;
     for (let i = 0; i < tableContent.length; i++) {
-        toAdd += `<tr>`;
+        toAdd += `<tr><td>${i + 1}</td>`;
         for (let j = 0; j < tableContent[i].length; j++) {
-            toAdd += `<td>${tableContent[i][j]}</td>`
+            toAdd += `<td>${tableContent[i][j]}</td>`;
         }
-        toAdd += `<td><button class='delete-btn'>&times;</button></td></tr>`
-    } 
+        toAdd += `<td><button class='delete-btn'>&times;</button></td></tr>`;
+    }
     tbodyEl.innerHTML = toAdd;
 }
 
@@ -88,9 +85,9 @@ function htmlToCsv() {
     var csvTable = [];
     csvTable.push(["#", "Company", "Position", "Date", "Time", "Status"])
     for (let i = 0; i < tableContent.length; i++) {
-        csvTable.push(tableContent[i].join(','));
+        var stringToAdd = (i + 1).toString() + ',' + tableContent[i].join(',');
+        csvTable.push(stringToAdd);
     }
-    console.log(csvTable)
     downloadCSVFile(csvTable.join("\n"), filename);
 }
 
