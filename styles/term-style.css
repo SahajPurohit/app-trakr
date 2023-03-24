@@ -249,3 +249,10 @@ body {
 .undo-btn-change:hover {
     background-color: royalblue;
 }
+
+.uploader {
+    margin-top: 10px;
+    /* border: none;
+    border-radius: 50px; */
+    /* font-size: x-large; */
+}

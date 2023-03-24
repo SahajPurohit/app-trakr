@@ -1,5 +1,6 @@
 window.onload = function() {
     document.getElementById('term').value = ''; // Clear term on refresh
+    document.getElementById('uploader').value = ''; // Clear file uploader on window load
     const theadEl = document.querySelector('thead');
     theadEl.innerHTML += `
         <tr>
@@ -11,8 +12,11 @@ window.onload = function() {
             <th>Status</th>
             <th></th>
          </tr>
-    `
+    `;
 }
+
+// Logic to read csv
+document.getElementById('uploader').addEventListener('change', readCSV);
 
 // Logic to show form
 document.querySelector("#add-app").addEventListener("click", function() {
@@ -112,4 +116,19 @@ function downloadCSVFile(csv, filename) {
     downloadLink.style.display = "none";
     document.body.appendChild(downloadLink);
     downloadLink.click();
+}
+
+function readCSV() {
+    var uploader = document.getElementById('uploader');
+    var reader = new FileReader();
+    reader.readAsText(uploader.files[0]);
+    reader.onloadend = () => {
+        let csv = reader.result;
+        var csvTable = csv.split('\n');
+        csvTable.shift(); // remove the table header line
+        csvTable = csvTable.map((e) => e.split(',')); 
+        csvTable = csvTable.map((e) => e.splice(1)); // remove the first element from each subarray, this is the '#'
+        tableContent = csvTable;
+        renderTable();
+    }
 }
