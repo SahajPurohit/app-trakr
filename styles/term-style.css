@@ -206,3 +206,32 @@ body {
 .delete-btn:hover {
     background-color: royalblue;
 }
+
+.button-class {
+    display: inline-block;
+}
+
+.download-btn {
+    /* top: -100; */
+    font-size: larger;
+    display: inline-block;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    width: 50px;
+    line-height: 50px;
+    border-radius: 50px;
+}
+
+.download-btn:hover {
+    background-color: royalblue;
+}
+
+.undo-btn-change {
+    /* display: inline-block; */
+    border: none;
+    font-size: larger;
+    width: 50px;
+    line-height: 50px;
+    border-radius: 50px;
+}
