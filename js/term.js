@@ -1,5 +1,17 @@
 window.onload = function() {
     document.getElementById('term').value = ''; // Clear term on refresh
+    const theadEl = document.querySelector('thead');
+    theadEl.innerHTML += `
+        <tr>
+            <th>#</th>
+            <th>Company</th>
+            <th>Position</th>
+            <th>Date Applied</th>
+            <th>Time Applied</th>
+            <th>Status</th>
+            <th></th>
+         </tr>
+    `
 }
 
 // Logic to show form
