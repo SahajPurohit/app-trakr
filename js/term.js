@@ -30,7 +30,7 @@ document.querySelector(".popup-form .close-btn").addEventListener("click", close
 // Should also close after clicking enter
 document.querySelector(".popup-form .enter-btn").addEventListener("click", closePopup);
 
-var tableContent = [];
+let tableContent = [];
 
 const tableEl = document.querySelector('table');
 tableEl.addEventListener("click", deleteRow);
@@ -43,9 +43,9 @@ function closePopup() {
 }
 
 function addApps() {
-    var dateAndTime = Date();
-    date = dateAndTime.substring(0, 15);
-    time = dateAndTime.substring(16, 24);
+    let dateAndTime = Date();
+    let date = dateAndTime.substring(0, 15);
+    let time = dateAndTime.substring(16, 24);
     const comp = document.getElementById("company-name").value;
     const pos = document.getElementById("position-name").value;
     tableContent.push([comp, pos, date, time, "Active"]);
@@ -65,23 +65,23 @@ function addApps() {
 
 function deleteRow(e) {
     if (!e.target.classList.contains('delete-btn')) return;
-    var btn = e.target;
+    let btn = e.target;
     let rowInnerHTML = btn.closest('tr');
-    var idx = rowInnerHTML.querySelector('td:first-child').innerHTML;
+    let idx = rowInnerHTML.querySelector('td:first-child').innerHTML;
     idx = parseInt(idx)
     tableContent.splice(idx - 1, 1);
     renderTable();
 }
 
 function deleteLatestEntry() {
-    if (tableContent.length == 0) return;
+    if (tableContent.length === 0) return;
     tableContent.pop();
     renderTable();
 }
 
 function renderTable() {
     const tbodyEl = document.querySelector('tbody');
-    toAdd = ``;
+    let toAdd = ``;
     for (let i = 0; i < tableContent.length; i++) {
         toAdd += `<tr><td>${i + 1}</td>`;
         for (let j = 0; j < tableContent[i].length; j++) {
@@ -93,22 +93,22 @@ function renderTable() {
 }
 
 function htmlToCsv() {
-    if (document.getElementById('term').value == '') {
+    if (document.getElementById('term').value === '') {
         alert("Please fill out the term field as that will be the name of the csv.");
         return;
     }
-    var filename = document.getElementById('term').value;
-    var csvTable = [];
+    let filename = document.getElementById('term').value;
+    let csvTable = [];
     csvTable.push(["#", "Company", "Position", "Date", "Time", "Status"])
     for (let i = 0; i < tableContent.length; i++) {
-        var stringToAdd = (i + 1).toString() + ',' + tableContent[i].join(',');
+        let stringToAdd = (i + 1).toString() + ',' + tableContent[i].join(',');
         csvTable.push(stringToAdd);
     }
     downloadCSVFile(csvTable.join("\n"), filename);
 }
 
 function downloadCSVFile(csv, filename) {
-    var csvFile, downloadLink;
+    let csvFile, downloadLink;
     csvFile = new Blob([csv], { type: "text/csv"});
     downloadLink = document.createElement("a");
     downloadLink.download = filename;
@@ -119,12 +119,12 @@ function downloadCSVFile(csv, filename) {
 }
 
 function readCSV() {
-    var uploader = document.getElementById('uploader');
-    var reader = new FileReader();
+    let uploader = document.getElementById('uploader');
+    let reader = new FileReader();
     reader.readAsText(uploader.files[0]);
     reader.onloadend = () => {
         let csv = reader.result;
-        var csvTable = csv.split('\n');
+        let csvTable = csv.split('\n');
         csvTable.shift(); // remove the table header line
         csvTable = csvTable.map((e) => e.split(',')); 
         csvTable = csvTable.map((e) => e.splice(1)); // remove the first element from each subarray, this is the '#'
