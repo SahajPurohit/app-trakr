@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="container">
-            <div class="quad" onclick="location.href='term.html';">
+            <div class="quad" id="create-quad">
                 <h1 class="quad-title">Create Term</h1>
             </div>
             <div class="quad" onclick="location.href='#';">
@@ -22,5 +22,39 @@
                 <h1 class="quad-title">Delete Term</h1>
             </div>
         </div>
+        <div class="popup-form"> <!-- Actual Form-->
+            <div class="close-btn">&times;</div> <!--Close button for the form-->
+            <div class="form">
+                <h2>Select table headers</h2>
+                <div class="form-element">
+                    <label for="Company">Company: </label>
+                    <input type="checkbox" id="company-checkbox" name="Company">
+                </div>
+                <div class="form-element">
+                    <label for="Position">Position: </label>
+                    <input type="checkbox" id="position-checkbox" name="Position">
+                </div>
+                <div class="form-element">
+                    <label for="Date Applied">Date Applied: </label>
+                    <input type="checkbox" id="date-applied-checkbox" name="Date Applied">
+                </div>
+                <div class="form-element">
+                    <label for="Time Applied">Time Applied: </label>
+                    <input type="checkbox" id="time-applied-checkbox" name="Time Applied">
+                </div>
+                <div class="form-element">
+                    <label for="Status">Status: </label>
+                    <input type="checkbox" id="status-checkbox" name="Status">
+                </div>
+                <div class="form-element">
+                    <button class="select-all-btn" id="select-all-btn" onclick="checkAll()">Select all</button>
+                </div>
+                <div class="form-element">
+                    <button class="enter-btn" id="enter-btn" onclick="createTable()">Create Table</button>
+                </div>
+            </div>
+        </div> 
+        <div id="overlay"></div>
     </body>
+    <script src="js/script.js"></script>
 </html>

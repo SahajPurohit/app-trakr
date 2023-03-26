@@ -1,18 +1,15 @@
 window.onload = function() {
     document.getElementById('term').value = ''; // Clear term on refresh
     document.getElementById('uploader').value = ''; // Clear file uploader on window load
+    let tableHeaders = JSON.parse(localStorage.getItem("checkedHeaders"));
+    localStorage.clear();
     const theadEl = document.querySelector('thead');
-    theadEl.innerHTML += `
-        <tr>
-            <th>#</th>
-            <th>Company</th>
-            <th>Position</th>
-            <th>Date Applied</th>
-            <th>Time Applied</th>
-            <th>Status</th>
-            <th></th>
-         </tr>
-    `;
+    let toAdd = `<tr><th>#</th>`;
+    for (let i = 0; i < tableHeaders.length; i++) {
+        toAdd += `<th>${tableHeaders[i]}</th>`;
+    }
+    toAdd += `<th></th></tr>`;
+    theadEl.innerHTML = toAdd;
 }
 
 let tableContent = [];
