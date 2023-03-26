@@ -15,6 +15,13 @@ window.onload = function() {
     `;
 }
 
+let tableContent = [];
+
+const tableEl = document.querySelector('table');
+tableEl.addEventListener("click", deleteRow);
+
+displayTotal();
+
 // Logic to read csv
 document.getElementById('uploader').addEventListener('change', readCSV);
 
@@ -30,10 +37,6 @@ document.querySelector(".popup-form .close-btn").addEventListener("click", close
 // Should also close after clicking enter
 document.querySelector(".popup-form .enter-btn").addEventListener("click", closePopup);
 
-let tableContent = [];
-
-const tableEl = document.querySelector('table');
-tableEl.addEventListener("click", deleteRow);
 
 function closePopup() {
     document.querySelector(".popup-form").classList.remove("active");
@@ -61,6 +64,7 @@ function addApps() {
             <td><button class='delete-btn'>&times;</button></td>
         </tr>
     `;
+    displayTotal();
 }
 
 function deleteRow(e) {
@@ -90,6 +94,7 @@ function renderTable() {
         toAdd += `<td><button class='delete-btn'>&times;</button></td></tr>`;
     }
     tbodyEl.innerHTML = toAdd;
+    displayTotal();
 }
 
 function htmlToCsv() {
@@ -131,4 +136,8 @@ function readCSV() {
         tableContent = csvTable;
         renderTable();
     }
+}
+
+function displayTotal() {
+    document.getElementById('num-apps').innerHTML = "Total: " + tableContent.length;
 }
