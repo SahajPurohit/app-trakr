@@ -15,13 +15,17 @@
             <div class="quad" onclick="location.href='#';">
                 <h1 class="quad-title">View Terms</h1>
             </div>
-            <div class="quad" onclick="location.href='#';">
+            <div class="quad" onclick="document.getElementById('csv-uploader').click()">
                 <h1 class="quad-title">Upload Term</h1>
             </div>
             <div class="quad" onclick="location.href='#';">
                 <h1 class="quad-title">Delete Term</h1>
             </div>
         </div>
+
+        /* For the upload term csv popup */
+        <input type="file" id="csv-uploader" style="display: none" accept=".csv">
+
         <div class="popup-form"> <!-- Actual Form-->
             <div class="close-btn">&times;</div> <!--Close button for the form-->
             <div class="form">

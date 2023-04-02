@@ -32,5 +32,22 @@ function createTable() {
     let checkedCheckboxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
     checkedCheckboxes = checkedCheckboxes.map(e => e.name);
     localStorage.setItem("checkedHeaders", JSON.stringify(checkedCheckboxes));
-    window.location.href = "term.html";
+    window.location.href = "term.html?source=" + encodeURIComponent("create");
+}
+
+document.getElementById('csv-uploader').addEventListener('change', readCSV);
+
+function readCSV() {
+    let uploader = document.getElementById('csv-uploader');
+    let reader = new FileReader();
+    reader.readAsText(uploader.files[0]);
+    reader.onloadend = () => {
+        let csv = reader.result;
+        let csvTable = csv.split('\n');
+        csvTable.shift(); // remove the table header line
+        csvTable = csvTable.map((e) => e.split(','));
+        csvTable = csvTable.map((e) => e.splice(1)); // remove the first element from each subarray, this is the '#'
+        localStorage.setItem("uploadedTable", JSON.stringify(csvTable));
+        window.location.href = "term.html?source=" + encodeURIComponent("upload");
+    }
 }

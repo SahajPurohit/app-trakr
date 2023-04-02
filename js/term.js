@@ -1,18 +1,28 @@
 window.onload = function() {
     document.getElementById('term').value = ''; // Clear term on refresh
     document.getElementById('uploader').value = ''; // Clear file uploader on window load
-    let tableHeaders = JSON.parse(localStorage.getItem("checkedHeaders"));
-    localStorage.clear();
-    const theadEl = document.querySelector('thead');
-    let toAdd = `<tr><th>#</th>`;
-    for (let i = 0; i < tableHeaders.length; i++) {
-        toAdd += `<th>${tableHeaders[i]}</th>`;
-    }
-    toAdd += `<th></th></tr>`;
-    theadEl.innerHTML = toAdd;
 }
 
 let tableContent = [];
+
+window.addEventListener('load', function() {
+    let queryParams = new URLSearchParams(window.location.search);
+    let source = queryParams.get('source');
+
+    if (source === "create") {
+        let tableHeaders = JSON.parse(localStorage.getItem("checkedHeaders"));
+        localStorage.clear();
+        setTableHeaders(tableHeaders);
+    }
+
+    else if (source === 'upload') {
+        setTableHeaders(["Company", "Position", "Date", "Time", "Status"]);
+        tableContent = JSON.parse(localStorage.getItem("uploadedTable"));
+        localStorage.clear();
+        renderTable();
+    }
+});
+
 
 const tableEl = document.querySelector('table');
 tableEl.addEventListener("click", deleteRow);
@@ -137,4 +147,14 @@ function readCSV() {
 
 function displayTotal() {
     document.getElementById('num-apps').innerHTML = "Total: " + tableContent.length;
+}
+
+function setTableHeaders(tableHeaderArr) {
+    const theadEl = document.querySelector('thead');
+    let toAdd = `<tr><th>#</th>`;
+    for (let i = 0; i < tableHeaderArr.length; i++) {
+        toAdd += `<th>${tableHeaderArr[i]}</th>`;
+    }
+    toAdd += `<th></th></tr>`;
+    theadEl.innerHTML = toAdd;
 }
