@@ -201,9 +201,9 @@ body {
     margin-right: 10px; /* Create distance between undo button next to it*/
     background:#ffffff;
     border-radius:50%;
-    background-position:center;
-    background-size: 50% 2px,2px 50%; /*thickness = 2px, length = 50% (25px)*/
-    background-repeat:no-repeat;
+    /*background-position:center;*/
+    /*background-size: 50% 2px,2px 50%; !*thickness = 2px, length = 50% (25px)*!*/
+    /*background-repeat:no-repeat;*/
     cursor: pointer;
 }
 
@@ -271,13 +271,20 @@ body {
 }
 
 .edit-btn {
-    margin-left: 10px;
     margin-top: 10px;
-    cursor: pointer;
+    margin-left: 10px;
+    font-size: x-large;
+    display: inline-block;
+    background-color: white;
     border: none;
+    cursor: pointer;
+    width: 50px;
+    line-height: 50px;
     border-radius: 50px;
-    font-size: larger;
-    background: white;
+}
+
+.edit-btn:hover {
+    background: royalblue;
 }
 
 .btn-container {

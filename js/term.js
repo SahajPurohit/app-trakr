@@ -3,6 +3,7 @@ window.onload = function() {
     document.getElementById('uploader').value = ''; // Clear file uploader on window load
 }
 
+let stateOfEditButton = "unclicked";
 let tableContent = [];
 
 window.addEventListener('load', function() {
@@ -95,9 +96,7 @@ function renderTable() {
     let toAdd = ``;
     for (let i = 0; i < tableContent.length; i++) {
         toAdd += `<tr><td>${i + 1}</td>`;
-        for (let j = 0; j < tableContent[i].length; j++) {
-            toAdd += `<td>${tableContent[i][j]}</td>`;
-        }
+        for (let j = 0; j < tableContent[i].length; j++) toAdd += `<td>${tableContent[i][j]}</td>`;
         toAdd += `<td><button class='delete-btn'>&times;</button></td></tr>`;
     }
     tbodyEl.innerHTML = toAdd;
@@ -162,6 +161,24 @@ function setTableHeaders(tableHeaderArr) {
 function makeEditable() {
     const table = document.getElementById("table");
     const cells = table.getElementsByTagName("td");
-    for (let i = 0; i < cells.length; i++) cells[i].contentEditable = true;
-
+    const editButton = document.getElementById("edit-btn");
+    if (stateOfEditButton === "unclicked") {
+        stateOfEditButton = "clicked";
+        editButton.style.backgroundColor = "green";
+        for (let i = 0; i < cells.length; i++) cells[i].contentEditable = true;
+    }
+    else if (stateOfEditButton === "clicked") {
+        let oneDimTable = [];
+        stateOfEditButton = "unclicked";
+        editButton.style.backgroundColor = "white";
+        for (let i = 0; i < cells.length; i++) {
+            oneDimTable.push(cells[i].innerHTML);
+            cells[i].contentEditable = false;
+        }
+        // Save changes on edit
+        let newTable = [];
+        for (let i = 0; i < oneDimTable.length; i += 7) newTable.push(oneDimTable.slice(i, i + 7));
+        newTable = newTable.map(e => e.slice(1, -1));
+        tableContent = newTable;
+    }
 }
