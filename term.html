@@ -24,7 +24,7 @@
             
             <label for="# of Applications" id="num-apps" class="num-apps-label"></label>
             <!-- Table -->
-            <table class= "content-table" id = "table">
+            <table class="content-table" id ="table">
                 <thead></thead>
                 <tbody></tbody>
             </table>
@@ -57,15 +57,31 @@
             </div>
         </div> 
         <!-- End Add Applications Button Form Logic -->
-        <div class="plus-btn" id="add-app"></div>
-        <!-- <div class="undo-btn" onclick="deleteLatestEntry()"></div> -->
-        <div><button class="undo-btn-change" onclick="deleteLatestEntry()"><i class='fa fa-undo'></i></button></div>
-        <div id="overlay"></div>
+<!--        <div id="overlay"></div>-->
 
-        <!-- Download Button -->
-        <div> <button class="download-btn" onclick="htmlToCsv()"><i class="fa fa-download"></i></button></div>
-        <!-- File Uploader -->
-        <input type="file" accept=".csv" id="uploader" class="uploader">
+        <div class="btn-container">
+            <div class="plus-btn" id="add-app"></div>
+            <div><button class="undo-btn-change" onclick="deleteLatestEntry()"><i class='fa fa-undo'></i></button></div>
+<!--            <div id="overlay"></div>-->
+
+            <!-- Download Button -->
+            <div> <button class="download-btn" onclick="htmlToCsv()"><i class="fa fa-download"></i></button></div>
+
+            <!-- Edit Button-->
+            <div>
+                <button class="edit-btn" onclick="makeEditable()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="44" height="44" viewBox="0 icon-tabler-edit" width="44" height="44" viewBox="0 0 240 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>   <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />
+                        <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />
+                        <line x1="16" y1="5" x2="19" y2="8" />
+                    </svg>
+                </button>
+            </div>
+            <!-- File Uploader -->
+            <input type="file" accept=".csv" id="uploader" class="uploader">
+        </div>
+        
+        <div id="overlay"></div>
     </body>
 
     <script src="js/term.js"></script> 

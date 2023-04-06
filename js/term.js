@@ -158,3 +158,10 @@ function setTableHeaders(tableHeaderArr) {
     toAdd += `<th></th></tr>`;
     theadEl.innerHTML = toAdd;
 }
+
+function makeEditable() {
+    const table = document.getElementById("table");
+    const cells = table.getElementsByTagName("td");
+    for (let i = 0; i < cells.length; i++) cells[i].contentEditable = true;
+
+}
