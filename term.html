@@ -11,32 +11,23 @@
 
     </head>
     <body>
-        
         <!-- Home Button -->
         <button class="home-btn" onclick="location.href='index.html';"><i class="fa fa-home"></i> Home</button>
-
-       
         <div class = "center">
-            
              <!-- Term Label -->
             <label for="Term" class="term-label">Term:  </label>
             <input type="text" id="term" placeholder="Enter Term (Eg. Spring 2023)">
-            
             <label for="# of Applications" id="num-apps" class="num-apps-label"></label>
             <!-- Table -->
             <table class="content-table" id ="table">
                 <thead></thead>
                 <tbody></tbody>
             </table>
+        </div>
 
-        </div>  <!-- Begin Add Applications Button Form Logic -->
 
-        <!-- <button id="add-app">Add new applications</button> Button -->
-
-        <div class="popup-form"> <!-- Actual Form-->
-
-            <div class="close-btn">&times;</div> <!--Close button for the form-->
-
+        <div class="popup-form"> <!-- Popup Form When Adding Applications-->
+            <div class="close-btn">&times;</div>
             <div class="form">
                 <h2>Insert Information</h2>
                 <div class="form-element">
@@ -72,13 +63,24 @@
             <!-- Edit Button-->
             <div><button class="edit-btn" onclick="makeEditable()" id="edit-btn"><i class="fa fa-edit"></i></button></div>
 
+            <!-- Analytics Button -->
+            <div><button class="analytics-btn" onclick="displayAnalyticsPopup()"><i class="fa fa-bar-chart"></i></button></div>
+
             <!-- File Uploader -->
             <input type="file" accept=".csv" id="uploader" class="uploader">
+        </div>
+
+        <div class="analytics-popup">
+            <div class="close-btn">&times;</div>
+            <h2>Analytics</h2>
+            <canvas id="myChart"></canvas>
         </div>
 
         <!-- Make sure this remains on the very bottom-->
         <div id="overlay"></div>
     </body>
 
-    <script src="js/term.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/term.js"></script>
+
 </html>

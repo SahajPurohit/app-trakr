@@ -293,3 +293,64 @@ body {
     top: 50%;
     transform: translateY(-50%);
 }
+
+.analytics-btn {
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: x-large;
+    display: inline-block;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    width: 50px;
+    line-height: 50px;
+    border-radius: 50px;
+}
+
+.analytics-btn:hover {
+    background: royalblue;
+}
+
+.analytics-popup {
+    background: linear-gradient(to right, rgb(9, 9, 133), rgb(0, 35, 68));
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    position: absolute;
+    padding: 20px 30px;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    /* transition: 200ms ease-in-out; */
+    left: 50%;
+    width: 600px;
+    z-index: 10; /* Overlay logic */
+}
+
+.analytics-popup.active {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.analytics-popup .close-btn {
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    text-align: center;
+    background: rgb(255, 255, 255);
+    line-height: 20px;
+    border-radius: 20px;
+}
+
+.analytics-popup .close-btn:hover {
+    background-color: royalblue;
+}
+
+.analytics-popup h2 {
+    color: #c7d2fd;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-weight: bold;
+}

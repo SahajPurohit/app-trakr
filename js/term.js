@@ -3,13 +3,14 @@ window.onload = function() {
     document.getElementById('uploader').value = ''; // Clear file uploader on window load
 }
 
-let stateOfEditButton = "unclicked";
 let tableContent = [];
+let stateOfEditButton = "unclicked";
 
 window.addEventListener('load', function() {
     let queryParams = new URLSearchParams(window.location.search);
     let source = queryParams.get('source');
-
+    let tableContent = []; // otherwise, it says tableContent is null when trying to add applications
+    setTableHeaders(["Company", "Position", "Date Applied", "Time Applied", "Status"]); // temp fix for bug where table headers are not set when refreshing term
     if (source === "create") {
         let tableHeaders = JSON.parse(localStorage.getItem("checkedHeaders"));
         localStorage.clear();
@@ -17,13 +18,12 @@ window.addEventListener('load', function() {
     }
 
     else if (source === 'upload') {
-        setTableHeaders(["Company", "Position", "Date", "Time", "Status"]);
+        // setTableHeaders(["Company", "Position", "Date", "Time", "Status"]);
         tableContent = JSON.parse(localStorage.getItem("uploadedTable"));
         localStorage.clear();
         renderTable();
     }
 });
-
 
 const tableEl = document.querySelector('table');
 tableEl.addEventListener("click", deleteRow);
@@ -33,24 +33,31 @@ displayTotal();
 // Logic to read csv
 document.getElementById('uploader').addEventListener('change', readCSV);
 
-// Logic to show form
+// Logic to show add applications popup form
 document.querySelector("#add-app").addEventListener("click", function() {
     document.querySelector(".popup-form").classList.add("active");
     document.querySelector("#overlay").classList.add("active");
 });
 
 // Close btn logic
-document.querySelector(".popup-form .close-btn").addEventListener("click", closePopup);
+document.querySelector(".popup-form .close-btn").addEventListener("click", closeAddAppPopup);
+
+document.querySelector(".analytics-popup .close-btn").addEventListener("click", closeAnalyticsPopup);
+
 
 // Should also close after clicking enter
-document.querySelector(".popup-form .enter-btn").addEventListener("click", closePopup);
+document.querySelector(".popup-form .enter-btn").addEventListener("click", closeAddAppPopup);
 
-
-function closePopup() {
+function closeAddAppPopup() {
     document.querySelector(".popup-form").classList.remove("active");
     document.querySelector("#overlay").classList.remove("active");
     document.getElementById('company-name').value = '';
     document.getElementById('position-name').value = '';
+}
+
+function closeAnalyticsPopup() {
+    document.querySelector(".analytics-popup").classList.remove("active");
+    document.querySelector("#overlay").classList.remove("active");
 }
 
 function addApps() {
@@ -94,6 +101,7 @@ function deleteLatestEntry() {
 function renderTable() {
     const tbodyEl = document.querySelector('tbody');
     let toAdd = ``;
+    if (tableContent === null) return; // temp fix for bug where tableContent is (always?) null on startup
     for (let i = 0; i < tableContent.length; i++) {
         toAdd += `<tr><td>${i + 1}</td>`;
         for (let j = 0; j < tableContent[i].length; j++) toAdd += `<td>${tableContent[i][j]}</td>`;
@@ -151,9 +159,7 @@ function displayTotal() {
 function setTableHeaders(tableHeaderArr) {
     const theadEl = document.querySelector('thead');
     let toAdd = `<tr><th>#</th>`;
-    for (let i = 0; i < tableHeaderArr.length; i++) {
-        toAdd += `<th>${tableHeaderArr[i]}</th>`;
-    }
+    for (let i = 0; i < tableHeaderArr.length; i++) toAdd += `<th>${tableHeaderArr[i]}</th>`;
     toAdd += `<th></th></tr>`;
     theadEl.innerHTML = toAdd;
 }
@@ -181,4 +187,48 @@ function makeEditable() {
         newTable = newTable.map(e => e.slice(1, -1));
         tableContent = newTable;
     }
+}
+let chart = null;
+
+function displayAnalyticsPopup() {
+    let chartContent = new Map();
+    for (let i = 0; i < tableContent.length; i++) {
+        if (!chartContent.has(tableContent[i][0])) chartContent.set(tableContent[i][0], 1);
+        else chartContent.set(tableContent[i][0], chartContent.get(tableContent[i][0]) + 1);
+    }
+    let data = {
+        labels: Array.from(chartContent.keys()),
+        datasets: [{
+            label: 'Number of application per company',
+            data: Array.from(chartContent.values()),
+            backgroundColor: [
+                'rgb(99,213,255)',
+                'rgb(255,0,80)',
+                'rgb(243,177,9)',
+                'rgb(7,68,68)',
+                'rgb(153, 102, 255)',
+                'rgb(140,255,64)',
+                'rgb(255, 99, 132)',
+                'rgb(255,174,4)',
+                'rgb(75, 192, 192,)',
+                'rgb(29,0,91)',
+                'rgb(211,255,0)',
+            ]
+        }]
+    };
+    let ctx = document.getElementById('myChart').getContext('2d');
+    if (chart) chart.destroy(); // destroy previous chart if it exists
+    chart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    document.querySelector(".analytics-popup").classList.add("active");
+    document.querySelector("#overlay").classList.add("active");
 }
