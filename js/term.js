@@ -187,14 +187,25 @@ function makeEditable() {
         tableContent = newTable;
     }
 }
+
 let chart = null;
 
 function displayAnalyticsPopup() {
+    document.querySelector(".analytics-popup").classList.add("active");
+    document.querySelector("#overlay").classList.add("active");
+}
+
+function prepChartData(dataTable) {
     let chartContent = new Map();
     for (let i = 0; i < tableContent.length; i++) {
         if (!chartContent.has(tableContent[i][0])) chartContent.set(tableContent[i][0], 1);
         else chartContent.set(tableContent[i][0], chartContent.get(tableContent[i][0]) + 1);
     }
+    return chartContent;
+}
+
+function displayBarChart() {
+    let chartContent = prepChartData(tableContent);
     let data = {
         labels: Array.from(chartContent.keys()),
         datasets: [{
@@ -215,7 +226,7 @@ function displayAnalyticsPopup() {
             ]
         }]
     };
-    let ctx = document.getElementById('myChart').getContext('2d');
+    let ctx = document.getElementById('chart-canvas').getContext('2d');
     if (chart) chart.destroy(); // destroy previous chart if it exists
     chart = new Chart(ctx, {
         type: 'bar',
@@ -228,6 +239,42 @@ function displayAnalyticsPopup() {
             }
         }
     });
-    document.querySelector(".analytics-popup").classList.add("active");
-    document.querySelector("#overlay").classList.add("active");
+}
+
+function displayPieChart() {
+    const chartContent = prepChartData(tableContent);
+    let data = {
+        labels: Array.from(chartContent.keys()),
+        datasets: [{
+            label: 'Number of application per company',
+            data: Array.from(chartContent.values()),
+            backgroundColor: [
+                'rgb(99,213,255)',
+                'rgb(255,0,80)',
+                'rgb(243,177,9)',
+                'rgb(7,68,68)',
+                'rgb(153, 102, 255)',
+                'rgb(140,255,64)',
+                'rgb(255, 99, 132)',
+                'rgb(255,174,4)',
+                'rgb(75, 192, 192,)',
+                'rgb(29,0,91)',
+                'rgb(211,255,0)',
+            ]
+        }]
+    };
+    let ctx = document.getElementById('chart-canvas').getContext('2d');
+    if (chart) chart.destroy(); // destroy previous chart if it exists
+    chart = new Chart(ctx, {
+        type: 'pie',
+        data: data,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                display: true,
+                text: 'Position per company'
+            }
+        }
+    });
 }

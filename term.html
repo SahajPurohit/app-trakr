@@ -75,7 +75,11 @@
         <div class="analytics-popup">
             <div class="close-btn">&times;</div>
             <h2>Analytics</h2>
-            <canvas id="myChart"></canvas>
+            <div class="analytics-btn-container">
+                <button onclick="displayBarChart()">Bar Chart</button>
+                <button onclick="displayPieChart()">Pie Chart</button>
+            </div>
+            <div class="chart-canvas-container"><canvas id="chart-canvas"></canvas></div>
         </div>
 
         <!-- Make sure this remains on the very bottom-->

@@ -364,7 +364,7 @@ body {
     font-weight: bold;
 }
 
-#chart-canvas-container {
-    max-width: 20px;
-    max-height: 20px;
+#chart-canvas {
+    width: 50%;
+    height: 50%;
 }
