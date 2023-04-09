@@ -196,7 +196,7 @@ function renderAddPopup(tableHeaders) {
     if (headerSet.has("Date Applied")) {
         div.innerHTML += `${beginString}<label for="date-applied">Date: </label>
         <input type="date" id="date-applied">
-        <label htmlFor="autofill-date" style="margin-left: 20px" id="autofill-date-label">Autofill: </label>
+        <label for="autofill-date" style="margin-left: 20px" id="autofill-date-label">Autofill: </label>
         <input type="checkbox" checked id="autofill-date"></div>`;
     }
 }
@@ -235,9 +235,9 @@ function displayAnalyticsPopup() {
 
 function prepChartData(dataTable) {
     let chartContent = new Map();
-    for (let i = 0; i < tableContent.length; i++) {
-        if (!chartContent.has(tableContent[i][0])) chartContent.set(tableContent[i][0], 1);
-        else chartContent.set(tableContent[i][0], chartContent.get(tableContent[i][0]) + 1);
+    for (let i = 0; i < dataTable.length; i++) {
+        if (!chartContent.has(dataTable[i][0])) chartContent.set(dataTable[i][0], 1);
+        else chartContent.set(dataTable[i][0], chartContent.get(dataTable[i][0]) + 1);
     }
     return chartContent;
 }
