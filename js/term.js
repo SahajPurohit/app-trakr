@@ -53,6 +53,7 @@ function closeAddAppPopup() {
     document.getElementById('company-name').value = '';
     document.getElementById('position-name').value = '';
     document.getElementById('date-applied').value = '';
+    document.getElementById('autofill-date').checked = true;
 }
 
 function closeAnalyticsPopup() {
