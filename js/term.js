@@ -177,6 +177,7 @@ function setTableHeaders(tableHeaderArr) {
 function renderAddPopup(tableHeaders) {
     const headerSet = new Set(tableHeaders);
     const div = document.getElementById('render-form-elements');
+    div.innerHTML = '';
     const beginString = `<div className="form-element" 
                                 style="color: lightblue;
                                 display: block;
@@ -185,15 +186,15 @@ function renderAddPopup(tableHeaders) {
                                 margin-bottom: 10px;
                                 width: 100%;">`;
     if (headerSet.has("Company")) {
-        div.innerHTML += `${beginString}<label htmlFor="company-name">Company: </label>
+        div.innerHTML += `${beginString}<label for="company-name">Company: </label>
         <input type="text" id="company-name" placeholder="Enter company name"></div>`;
     }
     if (headerSet.has("Position")) {
-        div.innerHTML += `${beginString}<label htmlFor="position-name">Position: </label>
+        div.innerHTML += `${beginString}<label for="position-name">Position: </label>
         <input type="text" id="position-name" placeholder="Enter position name"></div>`;
     }
     if (headerSet.has("Date Applied")) {
-        div.innerHTML += `${beginString}<label htmlFor="date-applied">Date: </label>
+        div.innerHTML += `${beginString}<label for="date-applied">Date: </label>
         <input type="date" id="date-applied">
         <label htmlFor="autofill-date" style="margin-left: 20px" id="autofill-date-label">Autofill: </label>
         <input type="checkbox" checked id="autofill-date"></div>`;
