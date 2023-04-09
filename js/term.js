@@ -19,6 +19,8 @@ window.addEventListener('load', function() {
 
     else if (source === 'upload') {
         // setTableHeaders(["Company", "Position", "Date", "Time", "Status"]);
+        let fileName = localStorage.getItem("fileName");
+        document.getElementById('term-name').value = fileName.substring(0, fileName.length - 4);
         tableContent = JSON.parse(localStorage.getItem("uploadedTable"));
         localStorage.clear();
         renderTable(tableContent);
