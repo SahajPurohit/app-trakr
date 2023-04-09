@@ -31,16 +31,18 @@
             <div class="form">
                 <h2>Insert Information</h2>
                 <div class="form-element">
-                    <label for="company">Company: </label>
+                    <label for="company-name">Company: </label>
                     <input type="text" id="company-name" placeholder="Enter company name">
                 </div>
                 <div class="form-element">
-                    <label for="position">Position: </label>
+                    <label for="position-name">Position: </label>
                     <input type="text" id="position-name" placeholder="Enter position name">
                 </div>
                 <div class="form-element">
-                    <label for="autofill-date-time">Autofill date and time: </label>
-                    <input type="checkbox" id="autofill-date-time">
+                    <label for="date-applied">Date: </label>
+                    <input type="date" id="date-applied">
+                    <label for="autofill-date" style="margin-left: 20px" id="autofill-date-label">Autofill: </label>
+                    <input type="checkbox" id="autofill-date">
                 </div>
                 <div class="form-element">
                     <button class="enter-btn" id="enter-btn" onclick="addApps()">Enter</button>

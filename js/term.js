@@ -52,6 +52,8 @@ function closeAddAppPopup() {
     document.querySelector("#overlay").classList.remove("active");
     document.getElementById('company-name').value = '';
     document.getElementById('position-name').value = '';
+    document.getElementById('date-applied').value = '';
+    document.getElementById('autofill-date').checked = true;
 }
 
 function closeAnalyticsPopup() {
@@ -61,7 +63,17 @@ function closeAnalyticsPopup() {
 
 function addApps() {
     let dateAndTime = Date();
-    let date = dateAndTime.substring(0, 15);
+    let date;
+    if (document.getElementById('autofill-date').checked) date = dateAndTime.substring(0, 15);
+    else {
+        const dateParts = document.getElementById('date-applied').value.split('-');
+        const year = dateParts[0];
+        const month = dateParts[1] - 1; // Month values in JavaScript start from 0 (January) instead of 1
+        const day = dateParts[2];
+        const dateObject = new Date(year, month, day); // This had to be done of time zone issues, otherwise the dates were off by one
+        const options = { weekday: 'short', month: 'short', day: '2-digit', year: 'numeric'};
+        date = dateObject.toLocaleDateString('en-US', options).replace(/,/g, ''); // Remove commas
+    }
     let time = dateAndTime.substring(16, 24);
     const comp = document.getElementById("company-name").value;
     const pos = document.getElementById("position-name").value;
