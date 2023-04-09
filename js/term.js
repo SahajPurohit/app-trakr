@@ -5,15 +5,16 @@ window.onload = function() {
 
 let tableContent = [];
 let stateOfEditButton = "unclicked";
-
 window.addEventListener('load', function() {
     let queryParams = new URLSearchParams(window.location.search);
     let source = queryParams.get('source');
     setTableHeaders(["Company", "Position", "Date Applied", "Time Applied", "Status"]); // temp fix for bug where table headers are not set when refreshing term
+    renderAddPopup(["Company", "Position", "Date Applied", "Time Applied", "Status"]); // temp fix for bug where pop-up elements are not set when refreshing term
     if (source === "create") {
         let tableHeaders = JSON.parse(localStorage.getItem("checkedHeaders"));
         localStorage.clear();
         setTableHeaders(tableHeaders);
+        renderAddPopup(tableHeaders);
     }
 
     else if (source === 'upload') {
@@ -43,7 +44,6 @@ document.querySelector(".popup-form .close-btn").addEventListener("click", close
 
 document.querySelector(".analytics-popup .close-btn").addEventListener("click", closeAnalyticsPopup);
 
-
 // Should also close after clicking enter
 document.querySelector(".popup-form .enter-btn").addEventListener("click", closeAddAppPopup);
 
@@ -53,7 +53,6 @@ function closeAddAppPopup() {
     document.getElementById('company-name').value = '';
     document.getElementById('position-name').value = '';
     document.getElementById('date-applied').value = '';
-    document.getElementById('autofill-date').checked = true;
 }
 
 function closeAnalyticsPopup() {
@@ -173,6 +172,32 @@ function setTableHeaders(tableHeaderArr) {
     for (let i = 0; i < tableHeaderArr.length; i++) toAdd += `<th>${tableHeaderArr[i]}</th>`;
     toAdd += `<th></th></tr>`;
     theadEl.innerHTML = toAdd;
+}
+
+function renderAddPopup(tableHeaders) {
+    const headerSet = new Set(tableHeaders);
+    const div = document.getElementById('render-form-elements');
+    const beginString = `<div className="form-element" 
+                                style="color: lightblue;
+                                display: block;
+                                font-family: Arial, Helvetica, sans-serif;
+                                font-weight: bold;
+                                margin-bottom: 10px;
+                                width: 100%;">`;
+    if (headerSet.has("Company")) {
+        div.innerHTML += `${beginString}<label htmlFor="company-name">Company: </label>
+        <input type="text" id="company-name" placeholder="Enter company name"></div>`;
+    }
+    if (headerSet.has("Position")) {
+        div.innerHTML += `${beginString}<label htmlFor="position-name">Position: </label>
+        <input type="text" id="position-name" placeholder="Enter position name"></div>`;
+    }
+    if (headerSet.has("Date Applied")) {
+        div.innerHTML += `${beginString}<label htmlFor="date-applied">Date: </label>
+        <input type="date" id="date-applied">
+        <label htmlFor="autofill-date" style="margin-left: 20px" id="autofill-date-label">Autofill: </label>
+        <input type="checkbox" checked id="autofill-date"></div>`;
+    }
 }
 
 function makeEditable() {

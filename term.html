@@ -30,44 +30,24 @@
             <div class="close-btn">&times;</div>
             <div class="form">
                 <h2>Insert Information</h2>
-                <div class="form-element">
-                    <label for="company-name">Company: </label>
-                    <input type="text" id="company-name" placeholder="Enter company name">
-                </div>
-                <div class="form-element">
-                    <label for="position-name">Position: </label>
-                    <input type="text" id="position-name" placeholder="Enter position name">
-                </div>
-                <div class="form-element">
-                    <label for="date-applied">Date: </label>
-                    <input type="date" id="date-applied">
-                    <label for="autofill-date" style="margin-left: 20px" id="autofill-date-label">Autofill: </label>
-                    <input type="checkbox" id="autofill-date">
-                </div>
+                <div id="render-form-elements"></div>
                 <div class="form-element">
                     <button class="enter-btn" id="enter-btn" onclick="addApps()">Enter</button>
                 </div>
             </div>
         </div> 
-        <!-- End Add Applications Button Form Logic -->
 
         <div class="btn-container">
-
             <!-- Add Application Button-->
             <div class="plus-btn" id="add-app"></div>
-
             <!-- Undo Button-->
             <div><button class="undo-btn-change" onclick="deleteLatestEntry()"><i class='fa fa-undo'></i></button></div>
-
             <!-- Download Button -->
             <div><button class="download-btn" onclick="htmlToCsv()"><i class="fa fa-download"></i></button></div>
-
             <!-- Edit Button-->
             <div><button class="edit-btn" onclick="makeEditable()" id="edit-btn"><i class="fa fa-edit"></i></button></div>
-
             <!-- Analytics Button -->
             <div><button class="analytics-btn" onclick="displayAnalyticsPopup()"><i class="fa fa-bar-chart"></i></button></div>
-
             <!-- Upload Button -->
             <div><button class="upload-btn" onclick="document.getElementById('uploader').click()"><i class="fa fa-upload"></i></button></div>
             <!-- File Uploader -->
