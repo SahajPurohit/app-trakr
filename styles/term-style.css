@@ -89,7 +89,8 @@ body {
     background-color: RoyalBlue;
 }
 
-/* Plus logo begin */
+
+/* BUTTONS ON THE LEFT SIDE OF THE PAGE */
 .plus-btn {
     display:inline-block;
     width:50px;
@@ -111,7 +112,120 @@ body {
 .plus-btn:hover{
     background-color: royalblue;
 }
-/* Plus logo end */
+
+.undo-btn {
+    display:inline-block;
+    width:50px;
+    height:50px;
+    margin-right: 10px; /* Create distance between undo button next to it*/
+    background:#ffffff;
+    border-radius:50%;
+    cursor: pointer;
+}
+
+.undo-btn:hover{
+    background-color: royalblue;
+}
+
+.download-btn {
+    /* top: -100; */
+    margin-left: 10px;
+    font-size: larger;
+    display: inline-block;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    width: 50px;
+    line-height: 50px;
+    border-radius: 50px;
+}
+
+.download-btn:hover {
+    background-color: royalblue;
+}
+
+.undo-btn-change {
+    cursor: pointer;
+    border: none;
+    font-size: larger;
+    width: 50px;
+    line-height: 50px;
+    border-radius: 50px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.undo-btn-change:hover {
+    background-color: royalblue;
+}
+
+.edit-btn {
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: x-large;
+    display: inline-block;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    width: 50px;
+    line-height: 50px;
+    border-radius: 50px;
+}
+
+.edit-btn:hover {
+    background: royalblue;
+}
+
+.analytics-btn {
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: x-large;
+    display: inline-block;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    width: 50px;
+    line-height: 50px;
+    border-radius: 50px;
+}
+
+.analytics-btn:hover {
+    background: royalblue;
+}
+
+.upload-btn {
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: x-large;
+    display: inline-block;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    width: 50px;
+    line-height: 50px;
+    border-radius: 50px;
+}
+
+.upload-btn:hover {
+    background: royalblue;
+}
+/* END OF BUTTONS ON THE LEFT SIDE OF THE PAGE */
+
+/* Delete button on the right of each table element*/
+.delete-btn {
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    width: 20px;
+    text-align: center;
+    background: rgb(255, 255, 255);
+    border: none;
+    line-height: 20px;
+    border-radius: 20px;
+}
+
+.delete-btn:hover {
+    background-color: royalblue;
+}
 
 /* Popup form begin*/
 .popup-form {
@@ -193,97 +307,8 @@ body {
 }
 /* Popup form end*/
 
-.undo-btn {  
-    display:inline-block;
-    width:50px;
-    height:50px;
-    margin-right: 10px; /* Create distance between undo button next to it*/
-    background:#ffffff;
-    border-radius:50%;
-    /*background-position:center;*/
-    /*background-size: 50% 2px,2px 50%; !*thickness = 2px, length = 50% (25px)*!*/
-    /*background-repeat:no-repeat;*/
-    cursor: pointer;
-}
-
-.undo-btn:hover{
-    background-color: royalblue;
-}
-
-.delete-btn {
-    color: rgb(0, 0, 0);
-    cursor: pointer;
-    width: 20px; 
-    text-align: center;
-    background: rgb(255, 255, 255);
-    border: none;
-    line-height: 20px;
-    border-radius: 20px;
-}
-
-.delete-btn:hover {
-    background-color: royalblue;
-}
-
 .button-class {
     display: inline-block;
-}
-
-.download-btn {
-    /* top: -100; */
-    margin-left: 10px;
-    font-size: larger;
-    display: inline-block;
-    background-color: white;
-    border: none;
-    cursor: pointer;
-    width: 50px;
-    line-height: 50px;
-    border-radius: 50px;
-}
-
-.download-btn:hover {
-    background-color: royalblue;
-}
-
-.undo-btn-change {
-    /* display: inline-block; */
-    cursor: pointer;
-    border: none;
-    font-size: larger;
-    width: 50px;
-    line-height: 50px;
-    border-radius: 50px;
-    margin-left: 10px;
-    margin-bottom: 10px;
-}
-
-.undo-btn-change:hover {
-    background-color: royalblue;
-}
-
-.uploader {
-    margin-top: 10px;
-    /* border: none;
-    border-radius: 50px; */
-    /* font-size: x-large; */
-}
-
-.edit-btn {
-    margin-top: 10px;
-    margin-left: 10px;
-    font-size: x-large;
-    display: inline-block;
-    background-color: white;
-    border: none;
-    cursor: pointer;
-    width: 50px;
-    line-height: 50px;
-    border-radius: 50px;
-}
-
-.edit-btn:hover {
-    background: royalblue;
 }
 
 .btn-container {
@@ -293,23 +318,7 @@ body {
     transform: translateY(-50%);
 }
 
-.analytics-btn {
-    margin-top: 10px;
-    margin-left: 10px;
-    font-size: x-large;
-    display: inline-block;
-    background-color: white;
-    border: none;
-    cursor: pointer;
-    width: 50px;
-    line-height: 50px;
-    border-radius: 50px;
-}
-
-.analytics-btn:hover {
-    background: royalblue;
-}
-
+/* Begin of the analytics popup */
 .analytics-popup {
     background: linear-gradient(to right, rgb(9, 9, 133), rgb(0, 35, 68));
     border-radius: 10px;
@@ -321,7 +330,8 @@ body {
     transform: translate(-50%, -50%) scale(0);
     /* transition: 200ms ease-in-out; */
     left: 50%;
-    width: 600px;
+    width: 90%;
+    height: 90%;
     z-index: 10; /* Overlay logic */
 }
 
@@ -354,19 +364,7 @@ body {
     font-weight: bold;
 }
 
-.upload-btn {
-    margin-top: 10px;
-    margin-left: 10px;
-    font-size: x-large;
-    display: inline-block;
-    background-color: white;
-    border: none;
-    cursor: pointer;
-    width: 50px;
-    line-height: 50px;
-    border-radius: 50px;
-}
-
-.upload-btn:hover {
-    background: royalblue;
+#chart-canvas-container {
+    max-width: 20px;
+    max-height: 20px;
 }
