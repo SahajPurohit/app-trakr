@@ -15,7 +15,6 @@ body {
     /* Centering Logic End*/
     font-size: 0.9em;
     min-width: 400px;
-
 }
 
 .content-table thead tr {
@@ -353,4 +352,21 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     font-weight: bold;
+}
+
+.upload-btn {
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: x-large;
+    display: inline-block;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    width: 50px;
+    line-height: 50px;
+    border-radius: 50px;
+}
+
+.upload-btn:hover {
+    background: royalblue;
 }
