@@ -9,7 +9,6 @@ let stateOfEditButton = "unclicked";
 window.addEventListener('load', function() {
     let queryParams = new URLSearchParams(window.location.search);
     let source = queryParams.get('source');
-    let tableContent = []; // otherwise, it says tableContent is null when trying to add applications
     setTableHeaders(["Company", "Position", "Date Applied", "Time Applied", "Status"]); // temp fix for bug where table headers are not set when refreshing term
     if (source === "create") {
         let tableHeaders = JSON.parse(localStorage.getItem("checkedHeaders"));
@@ -21,7 +20,7 @@ window.addEventListener('load', function() {
         // setTableHeaders(["Company", "Position", "Date", "Time", "Status"]);
         tableContent = JSON.parse(localStorage.getItem("uploadedTable"));
         localStorage.clear();
-        renderTable();
+        renderTable(tableContent);
     }
 });
 
@@ -89,22 +88,22 @@ function deleteRow(e) {
     let idx = rowInnerHTML.querySelector('td:first-child').innerHTML;
     idx = parseInt(idx)
     tableContent.splice(idx - 1, 1);
-    renderTable();
+    renderTable(tableContent);
 }
 
 function deleteLatestEntry() {
     if (tableContent.length === 0) return;
     tableContent.pop();
-    renderTable();
+    renderTable(tableContent);
 }
 
-function renderTable() {
+function renderTable(tableToRender) {
     const tbodyEl = document.querySelector('tbody');
     let toAdd = ``;
-    if (tableContent === null) return; // temp fix for bug where tableContent is (always?) null on startup
-    for (let i = 0; i < tableContent.length; i++) {
+    if (tableToRender === null) return; // temp fix for bug where tableContent is (always?) null on startup
+    for (let i = 0; i < tableToRender.length; i++) {
         toAdd += `<tr><td>${i + 1}</td>`;
-        for (let j = 0; j < tableContent[i].length; j++) toAdd += `<td>${tableContent[i][j]}</td>`;
+        for (let j = 0; j < tableToRender[i].length; j++) toAdd += `<td>${tableToRender[i][j]}</td>`;
         toAdd += `<td><button class='delete-btn'>&times;</button></td></tr>`;
     }
     tbodyEl.innerHTML = toAdd;
@@ -148,7 +147,7 @@ function readCSV() {
         csvTable = csvTable.map((e) => e.split(',')); 
         csvTable = csvTable.map((e) => e.splice(1)); // remove the first element from each subarray, this is the '#'
         tableContent = csvTable;
-        renderTable();
+        renderTable(tableContent);
     }
 }
 
