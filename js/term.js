@@ -33,6 +33,23 @@ displayTotal();
 // Logic to read csv
 document.getElementById('uploader').addEventListener('change', readCSV);
 
+function readCSV() {
+    let uploader = document.getElementById('uploader');
+    let fileName = uploader.files[0].name;
+    document.getElementById('term-name').value = fileName.substring(0, fileName.length - 4);
+    let reader = new FileReader();
+    reader.readAsText(uploader.files[0]);
+    reader.onloadend = () => {
+        let csv = reader.result;
+        let csvTable = csv.split('\n');
+        csvTable.shift(); // remove the table header line
+        csvTable = csvTable.map((e) => e.split(','));
+        csvTable = csvTable.map((e) => e.splice(1)); // remove the first element from each subarray, this is the '#'
+        tableContent = csvTable;
+        renderTable(tableContent);
+    }
+}
+
 // Logic to show add applications popup form
 document.querySelector("#add-app").addEventListener("click", function() {
     document.querySelector(".popup-form").classList.add("active");
@@ -146,21 +163,6 @@ function downloadCSVFile(csv, filename) {
     downloadLink.style.display = "none";
     document.body.appendChild(downloadLink);
     downloadLink.click();
-}
-
-function readCSV() {
-    let uploader = document.getElementById('uploader');
-    let reader = new FileReader();
-    reader.readAsText(uploader.files[0]);
-    reader.onloadend = () => {
-        let csv = reader.result;
-        let csvTable = csv.split('\n');
-        csvTable.shift(); // remove the table header line
-        csvTable = csvTable.map((e) => e.split(',')); 
-        csvTable = csvTable.map((e) => e.splice(1)); // remove the first element from each subarray, this is the '#'
-        tableContent = csvTable;
-        renderTable(tableContent);
-    }
 }
 
 function displayTotal() {
