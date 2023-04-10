@@ -20,7 +20,7 @@ window.addEventListener('load', function() {
     else if (source === 'upload') {
         // setTableHeaders(["Company", "Position", "Date", "Time", "Status"]);
         let fileName = localStorage.getItem("fileName");
-        document.getElementById('term-name').value = fileName.substring(0, fileName.length - 4);
+        document.getElementById('term-name').value = fileName.substring(0, fileName.length - 4); // Get rid of .csv
         tableContent = JSON.parse(localStorage.getItem("uploadedTable"));
         localStorage.clear();
         renderTable(tableContent);
@@ -142,7 +142,7 @@ function renderTable(tableToRender) {
 }
 
 function htmlToCsv() {
-    if (document.getElementById('term').value === '') {
+    if (document.getElementById('term-name').value === '') {
         alert("Please fill out the term field as that will be the name of the csv.");
         return;
     }
