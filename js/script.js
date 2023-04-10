@@ -48,7 +48,7 @@ function readCSV() {
         csvTable.shift(); // remove the table header line
         csvTable = csvTable.map((e) => e.split(','));
         csvTable = csvTable.map((e) => e.splice(1)); // remove the first element from each subarray, this is the '#'
-        localStorage.setItem("fileName", fileName);
+        localStorage.setItem("fileName", JSON.stringify(fileName));
         localStorage.setItem("uploadedTable", JSON.stringify(csvTable));
         window.location.href = "term.html?source=" + encodeURIComponent("upload");
     }

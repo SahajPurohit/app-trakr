@@ -1,5 +1,5 @@
 window.onload = function() {
-    document.getElementById('term').value = ''; // Clear term on refresh
+    document.getElementById('term-name').value = ''; // Clear term on refresh
     document.getElementById('uploader').value = ''; // Clear file uploader on window load
 }
 
@@ -19,8 +19,8 @@ window.addEventListener('load', function() {
 
     else if (source === 'upload') {
         // setTableHeaders(["Company", "Position", "Date", "Time", "Status"]);
-        let fileName = localStorage.getItem("fileName");
-        document.getElementById('term-name').value = fileName.substring(0, fileName.length - 4); // Get rid of .csv
+        let fileName = JSON.parse(localStorage.getItem("fileName"));
+        document.getElementById("term-name").value = fileName.substring(0, fileName.length - 4); // Get rid of .csv
         tableContent = JSON.parse(localStorage.getItem("uploadedTable"));
         localStorage.clear();
         renderTable(tableContent);
@@ -146,7 +146,7 @@ function htmlToCsv() {
         alert("Please fill out the term field as that will be the name of the csv.");
         return;
     }
-    let filename = document.getElementById('term').value;
+    let filename = document.getElementById('term-name').value;
     let csvTable = [];
     csvTable.push(["#", "Company", "Position", "Date", "Time", "Status"])
     for (let i = 0; i < tableContent.length; i++) {
@@ -183,7 +183,7 @@ function renderAddPopup(tableHeaders) {
     const headerSet = new Set(tableHeaders);
     const div = document.getElementById('render-form-elements');
     div.innerHTML = '';
-    const beginString = `<div className="form-element" 
+    const beginString = `<div class="form-element" 
                                 style="color: lightblue;
                                 display: block;
                                 font-family: Arial, Helvetica, sans-serif;
