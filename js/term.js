@@ -248,25 +248,15 @@ function prepChartData(dataTable) {
 }
 
 function displayBarChart() {
+    let colorScale = chroma.scale(['#fafa6e', '#2A4858']).mode('lch').colors(3);
     let chartContent = prepChartData(tableContent);
     let data = {
         labels: Array.from(chartContent.keys()),
         datasets: [{
             label: 'Number of application per company',
             data: Array.from(chartContent.values()),
-            backgroundColor: [
-                'rgb(99,213,255)',
-                'rgb(255,0,80)',
-                'rgb(243,177,9)',
-                'rgb(7,68,68)',
-                'rgb(153, 102, 255)',
-                'rgb(140,255,64)',
-                'rgb(255, 99, 132)',
-                'rgb(255,174,4)',
-                'rgb(75, 192, 192,)',
-                'rgb(29,0,91)',
-                'rgb(211,255,0)',
-            ]
+            backgroundColor: colorScale,
+            borderWidth: 1
         }]
     };
     let ctx = document.getElementById('chart-canvas').getContext('2d');
@@ -291,19 +281,6 @@ function displayPieChart() {
         datasets: [{
             label: 'Number of application per company',
             data: Array.from(chartContent.values()),
-            backgroundColor: [
-                'rgb(99,213,255)',
-                'rgb(255,0,80)',
-                'rgb(243,177,9)',
-                'rgb(7,68,68)',
-                'rgb(153, 102, 255)',
-                'rgb(140,255,64)',
-                'rgb(255, 99, 132)',
-                'rgb(255,174,4)',
-                'rgb(75, 192, 192,)',
-                'rgb(29,0,91)',
-                'rgb(211,255,0)',
-            ]
         }]
     };
     let ctx = document.getElementById('chart-canvas').getContext('2d');
