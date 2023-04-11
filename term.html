@@ -58,8 +58,19 @@
             <div class="close-btn">&times;</div>
             <h2>Analytics</h2>
             <div class="analytics-btn-container">
-                <button onclick="displayBarChart()">Bar Chart</button>
-                <button onclick="displayPieChart()">Pie Chart</button>
+                <label for="graph-data">Graph Data:</label>
+                <select id="graph-data" name="graph-data-list">
+                    <option value="app-per-company">Applications Per Company</option>
+                    <option value="app-per-position">Applications Per Position</option>
+                    <option value="app-per-day">Applications Per Day</option>
+                    <option value="app-per-status">Applications Per Status</option>
+                </select>
+                <label for="graph-type">Graph Type:</label>
+                <select id="graph-type" name="graph-type-list">
+                    <option value="bar">Bar Graph</option>
+                    <option value="pie">Pie Chart</option>
+                </select>
+                <button onclick="displayChart()">Display Graph</button>
             </div>
             <div class="chart-canvas-container"><canvas id="chart-canvas"></canvas></div>
         </div>
@@ -67,6 +78,7 @@
         <!-- Make sure this remains on the very bottom-->
         <div id="overlay"></div>
     </body>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/term.js"></script>

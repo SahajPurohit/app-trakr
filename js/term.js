@@ -78,6 +78,10 @@ function closeAddAppPopup() {
 function closeAnalyticsPopup() {
     document.querySelector(".analytics-popup").classList.remove("active");
     document.querySelector("#overlay").classList.remove("active");
+    // Clear canvas on close
+    // const canvas = document.getElementById('chart-canvas');
+    // const ctx = canvas.getContext('2d');
+    // ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 function addApps() {
@@ -238,22 +242,42 @@ function displayAnalyticsPopup() {
     document.querySelector("#overlay").classList.add("active");
 }
 
-function prepChartData(dataTable) {
+function displayChart() {
+    let graphData = document.getElementById("graph-data");
+    let selectedGraphDataIndex = graphData.selectedIndex;
+    let selectedGraphDataOption = graphData.options[selectedGraphDataIndex];
+    let selectedGraphDataValue = selectedGraphDataOption.value;
+
+    let graphType = document.getElementById("graph-type");
+    let selectedGraphTypeIndex = graphType.selectedIndex;
+    let selectedGraphTypeOption = graphType.options[selectedGraphTypeIndex];
+    let selectedGraphTypeValue = selectedGraphTypeOption.value;
+
+    if (selectedGraphTypeValue === "bar") displayBarChart(prepChartData(tableContent, selectedGraphDataValue), selectedGraphDataValue);
+    else if (selectedGraphTypeValue === "pie") displayPieChart(prepChartData(tableContent, selectedGraphDataValue), selectedGraphDataValue);
+}
+
+function prepChartData(dataTable, chartLabel) {
+    let chartLabelIndex;
+    if (chartLabel === "app-per-company") chartLabelIndex = 0;
+    else if (chartLabel === "app-per-position") chartLabelIndex = 1;
+    else if (chartLabel === "app-per-day") chartLabelIndex = 2;
+    else if (chartLabel === "app-per-status") chartLabelIndex = 4;
     let chartContent = new Map();
     for (let i = 0; i < dataTable.length; i++) {
-        if (!chartContent.has(dataTable[i][0])) chartContent.set(dataTable[i][0], 1);
-        else chartContent.set(dataTable[i][0], chartContent.get(dataTable[i][0]) + 1);
+        if (!chartContent.has(dataTable[i][chartLabelIndex])) chartContent.set(dataTable[i][chartLabelIndex], 1);
+        else chartContent.set(dataTable[i][chartLabelIndex], chartContent.get(dataTable[i][chartLabelIndex]) + 1);
     }
     return chartContent;
 }
 
-function displayBarChart() {
+function displayBarChart(chartContent, chartLabel) {
+    let processedChartLabel = "Number of applications per " + chartLabel.split("-").slice(-1);
     let colorScale = chroma.scale(['#fafa6e', '#2A4858']).mode('lch').colors(3);
-    let chartContent = prepChartData(tableContent);
     let data = {
         labels: Array.from(chartContent.keys()),
         datasets: [{
-            label: 'Number of application per company',
+            label: processedChartLabel,
             data: Array.from(chartContent.values()),
             backgroundColor: colorScale,
             borderWidth: 1
@@ -274,12 +298,12 @@ function displayBarChart() {
     });
 }
 
-function displayPieChart() {
-    const chartContent = prepChartData(tableContent);
+function displayPieChart(chartContent, chartLabel) {
+    let processedChartLabel = "Number of applications per " + chartLabel.split("-").slice(-1);
     let data = {
         labels: Array.from(chartContent.keys()),
         datasets: [{
-            label: 'Number of application per company',
+            label: processedChartLabel,
             data: Array.from(chartContent.values()),
         }]
     };
